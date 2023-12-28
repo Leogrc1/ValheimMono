@@ -22,7 +22,7 @@ namespace ValheimMono
             GUI.Box(new Rect(25, 25, 200, 200), "TinyVikingBoost");
 
             // Utilise un bouton pour activer ou désactiver l'ESP
-            if (GUI.Button(new Rect(27, 45, 190, 40), "ESP Hack"))
+            if (GUI.Button(new Rect(30, 45, 190, 40), "ESP Hack"))
             {
                 isEspEnabled = !isEspEnabled;
             }
