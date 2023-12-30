@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ValheimMono
@@ -7,30 +8,51 @@ namespace ValheimMono
     {
         private AnimalAI[] animals;
         private MonsterAI[] monsters;
+        private Pickable[] drops;
+        private Tameable[] tameables;
+        private Container[] containers;
 
         public float maxDistance = 75f;
 
         private bool animalsESP = false;
         private bool monstersESP = false;
+        private bool dropESP = false;
+        private bool tameablesESP = false;
+        private bool containersESP = false;
 
         public void Start()
         {
             animals = FindObjectsOfType<AnimalAI>();
             monsters= FindObjectsOfType<MonsterAI>();
+            drops = FindObjectsOfType<Pickable>();
+            tameables = FindObjectsOfType<Tameable>();
+            containers = FindObjectsOfType<Container>();
         }
 
         public void OnGUI()
         {
-            GUI.Box(new Rect(25, 25, 200, 200), "TinyVikingBoost");
+            GUI.Box(new Rect(25, 25, 200, 400), "TinyVikingBoost");
 
             // Utilise un bouton pour activer ou désactiver l'ESP
             if (GUI.Button(new Rect(30, 45, 190, 40), "Monsters ESP"))
             {
                 monstersESP = !monstersESP;
             }
-            if (GUI.Button(new Rect(30, 86, 190, 40), "Animals ESP"))
+            if (GUI.Button(new Rect(30, 85, 190, 40), "Animals ESP"))
             {
-                animalsESP= !animalsESP;
+                animalsESP = !animalsESP;
+            }
+            if (GUI.Button(new Rect(30, 125, 190, 40), "Drop ESP"))
+            {
+                dropESP = !dropESP;
+            }
+            if (GUI.Button(new Rect(30, 165, 190, 40), "Tameables ESP"))
+            {
+                tameablesESP = !tameablesESP;
+            }
+            if (GUI.Button(new Rect(30, 205, 190, 40), "Containers ESP"))
+            {
+                containersESP = !containersESP;
             }
 
             // Affiche l'ESP seulement si la valeur est vrai
@@ -41,6 +63,18 @@ namespace ValheimMono
             if(animalsESP)
             {
                 DrawObjectsESP(animals, Color.green);
+            }
+            if(dropESP)
+            {
+                DrawObjectsESP(drops, Color.blue);
+            }
+            if (tameablesESP)
+            {
+                DrawObjectsESP(tameables, Color.white);
+            }
+            if(containersESP)
+            {
+                DrawObjectsESP(containers, Color.yellow);
             }
         }
 
