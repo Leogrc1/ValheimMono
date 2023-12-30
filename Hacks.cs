@@ -32,7 +32,8 @@ namespace ValheimMono
             {
                 animalsESP= !animalsESP;
             }
-            // Affiche l'ESP seulement si isEspEnabled est vrai
+
+            // Affiche l'ESP seulement si la valeur est vrai
             if (monstersESP)
             {
                 DrawObjectsESP(monsters, Color.red);
