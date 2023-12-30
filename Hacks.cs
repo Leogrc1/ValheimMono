@@ -9,7 +9,9 @@ namespace ValheimMono
         private MonsterAI[] monsters;
 
         public float maxDistance = 75f;
-        private bool isEspEnabled = false;
+
+        private bool animalsESP = false;
+        private bool monstersESP = false;
 
         public void Start()
         {
@@ -22,16 +24,22 @@ namespace ValheimMono
             GUI.Box(new Rect(25, 25, 200, 200), "TinyVikingBoost");
 
             // Utilise un bouton pour activer ou désactiver l'ESP
-            if (GUI.Button(new Rect(30, 45, 190, 40), "ESP Hack"))
+            if (GUI.Button(new Rect(30, 45, 190, 40), "Monsters ESP"))
             {
-                isEspEnabled = !isEspEnabled;
+                monstersESP = !monstersESP;
             }
-
-            // Affiche l'ESP seulement si isEspEnabled est vrai
-            if (isEspEnabled)
+            if (GUI.Button(new Rect(30, 86, 190, 40), "Animals ESP"))
             {
-                DrawObjectsESP(animals, Color.blue);
+                animalsESP= !animalsESP;
+            }
+            // Affiche l'ESP seulement si isEspEnabled est vrai
+            if (monstersESP)
+            {
                 DrawObjectsESP(monsters, Color.red);
+            }
+            if(animalsESP)
+            {
+                DrawObjectsESP(animals, Color.green);
             }
         }
 
