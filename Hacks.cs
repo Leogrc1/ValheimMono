@@ -8,23 +8,22 @@ namespace ValheimMono
     {
         private AnimalAI[] animals;
         private MonsterAI[] monsters;
-        private Pickable[] drops;
+        private Pickable[] pickables;
         private Tameable[] tameables;
         private Container[] containers;
 
-        public float maxDistance = 75f;
-
         private bool animalsESP = false;
         private bool monstersESP = false;
-        private bool dropESP = false;
+        private bool pickablesESP = false;
         private bool tameablesESP = false;
         private bool containersESP = false;
 
+        public float maxDistance = 75f;
         public void Start()
         {
             animals = FindObjectsOfType<AnimalAI>();
             monsters= FindObjectsOfType<MonsterAI>();
-            drops = FindObjectsOfType<Pickable>();
+            pickables = FindObjectsOfType<Pickable>();
             tameables = FindObjectsOfType<Tameable>();
             containers = FindObjectsOfType<Container>();
         }
@@ -44,7 +43,7 @@ namespace ValheimMono
             }
             if (GUI.Button(new Rect(30, 125, 190, 40), "Drop ESP"))
             {
-                dropESP = !dropESP;
+                pickablesESP = !pickablesESP;
             }
             if (GUI.Button(new Rect(30, 165, 190, 40), "Tameables ESP"))
             {
@@ -64,9 +63,9 @@ namespace ValheimMono
             {
                 DrawObjectsESP(animals, Color.green);
             }
-            if(dropESP)
+            if(pickablesESP)
             {
-                DrawObjectsESP(drops, Color.blue);
+                DrawObjectsESP(pickables, Color.blue);
             }
             if (tameablesESP)
             {
