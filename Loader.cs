@@ -11,6 +11,7 @@ namespace ValheimMono
         {
             Loader.Load = new GameObject("ValheimMonoLoader");
             Loader.Load.AddComponent<Hacks>();
+            Loader.Load.AddComponent<MenuManager>();
             Object.DontDestroyOnLoad(Load);
         }
 
