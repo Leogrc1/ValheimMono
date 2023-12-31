@@ -23,7 +23,6 @@ namespace ValheimMono
             if (Input.GetKeyDown(KeyCode.Insert))
             {
                 isMenuEnabled = !isMenuEnabled;
-                Debug.Log("Menu state toggled. isMenuEnabled: " + isMenuEnabled);
             }
 
             if (Input.GetKeyDown(KeyCode.Delete))
