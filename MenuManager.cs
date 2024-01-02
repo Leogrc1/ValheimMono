@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 
 namespace ValheimMono
@@ -9,14 +10,21 @@ namespace ValheimMono
 
         public GameObject menu;
 
+        //ESP bool
         private bool isDrawMonstersESP = false;
         private bool isDrawAnimalsESP = false;
         private bool isDrawContainersESP = false;
         private bool isDrawTameablesESP = false;
         private bool isDrawPickablesESP = false;
 
+        //Menu bool
         private bool isMenuEnabled = false;
         private bool isESPMenuEnabled = false;
+        private bool isPlayerMenuEnabled = false;
+        private bool isMiscMenuEnabled = false;
+
+        //Player bool
+        private bool isHealthHackEnabled = false;
 
         public void Start()
         {
@@ -40,7 +48,7 @@ namespace ValheimMono
         {
             if (isMenuEnabled)
             {
-                GUI.Box(new Rect(25, 25, 200, 400), "TinyVikingBoost");
+                GUI.Box(new Rect(25, 25, 300, 400), "TinyVikingBoost");
 
                 if (GUI.Button(new Rect(30, 45, 95, 40), "ESP"))
                 {
@@ -71,9 +79,25 @@ namespace ValheimMono
                 }
                 else
                 {
-                    if (GUI.Button(new Rect(125, 45, 95, 40), "Misc"))
+                    if (GUI.Button(new Rect(225, 45, 95, 40), "Misc"))
                     {
 
+                    }
+                    else
+                    {
+                        if (GUI.Button(new Rect(127.6f, 45, 95, 40), "Player"))
+                        {
+                            isPlayerMenuEnabled = !isPlayerMenuEnabled;
+                        }
+
+                        if (isPlayerMenuEnabled)
+                        {
+                            if (GUI.Button(new Rect(30, 85, 190, 40), "Health Hack"))
+                            {
+                                isHealthHackEnabled = !isHealthHackEnabled;
+                            }
+                            PlayerValues();
+                        }
                     }
                 }
             }
@@ -101,6 +125,13 @@ namespace ValheimMono
             if(isDrawPickablesESP)
             {
                 ESPManager.DrawPickablesTab();
+            }
+        }
+        public void PlayerValues()
+        {
+            if(isHealthHackEnabled)
+            {
+                ESPManager.HealthHack();
             }
         }
     }

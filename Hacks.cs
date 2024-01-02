@@ -4,13 +4,14 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 namespace ValheimMono
 {
-    internal class Hacks : MonoBehaviour
+    public class Hacks : MonoBehaviour
     {
         private AnimalAI[] animals;
         private MonsterAI[] monsters;
         private Pickable[] pickables;
         private Tameable[] tameables;
         private Container[] containers;
+        private Player players;
 
         public float maxDistance = 75f;
         public void Start()
@@ -20,6 +21,13 @@ namespace ValheimMono
             pickables = FindObjectsOfType<Pickable>();
             tameables = FindObjectsOfType<Tameable>();
             containers = FindObjectsOfType<Container>();
+        }
+
+        public void HealthHack()
+        {
+            players = FindObjectOfType<Player>();
+
+            players.SetMaxHealth(10000f, true);
         }
 
         public void DrawMonstersTab()
