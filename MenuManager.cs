@@ -9,9 +9,14 @@ namespace ValheimMono
 
         public GameObject menu;
 
-        private bool isMenuEnabled = false;
+        private bool isDrawMonstersESP = false;
+        private bool isDrawAnimalsESP = false;
+        private bool isDrawContainersESP = false;
+        private bool isDrawTameablesESP = false;
+        private bool isDrawPickablesESP = false;
 
-        private int selectedTab = 0;
+        private bool isMenuEnabled = false;
+        private bool isESPMenuEnabled = false;
 
         public void Start()
         {
@@ -33,35 +38,69 @@ namespace ValheimMono
 
         public void OnGUI()
         {
-            Debug.Log("OnGUI is Called");
             if (isMenuEnabled)
             {
                 GUI.Box(new Rect(25, 25, 200, 400), "TinyVikingBoost");
 
-                DrawTabs();
-
-                switch (selectedTab)
+                if (GUI.Button(new Rect(30, 45, 95, 40), "ESP"))
                 {
-                    case 0:
-                        ESPManager.DrawMonstersTab();
-                        break;
-                    case 1:
-                        ESPManager.DrawAnimalsTab();
-                        break;
+                    isESPMenuEnabled = !isESPMenuEnabled;
+                }
+                if (isESPMenuEnabled)
+                {
+                    if (GUI.Button(new Rect(30, 85, 190, 40), "Monsters ESP"))
+                    {
+                        isDrawMonstersESP = !isDrawMonstersESP;
+                    }
+                    if(GUI.Button(new Rect(30, 125, 190, 40), "Animals ESP"))
+                    {
+                        isDrawAnimalsESP = !isDrawAnimalsESP;
+                    }
+                    if(GUI.Button(new Rect(30, 165, 190, 40), "Tameables ESP"))
+                    {
+                        isDrawTameablesESP = !isDrawTameablesESP;
+                    }
+                    if (GUI.Button(new Rect(30, 205, 190, 40), "Containers ESP"))
+                    {
+                        isDrawContainersESP = !isDrawContainersESP;
+                    }
+                    if(GUI.Button(new Rect(30, 245, 190, 40), "Pickables ESP"))
+                    {
+                        isDrawPickablesESP = !isDrawPickablesESP;
+                    }
+                }
+                else
+                {
+                    if (GUI.Button(new Rect(125, 45, 95, 40), "Misc"))
+                    {
 
-                    default: break;
+                    }
                 }
             }
+            ESPValues();
         }
-
-        void DrawTabs()
+        public void ESPValues()
         {
-            for (int i = 0; i < 2; i++)
+            //Valeurs des ESP
+            if (isDrawMonstersESP)
             {
-                if (GUI.Button(new Rect(30 + i * 70, 45, 70, 40), "Tab " + i))
-                {
-                    selectedTab = i;
-                }
+                ESPManager.DrawMonstersTab();
+            }
+            if(isDrawAnimalsESP)
+            {
+                ESPManager.DrawAnimalsTab();
+            }
+            if(isDrawTameablesESP)
+            {
+                ESPManager.DrawTameablesTab();
+            }
+            if(isDrawContainersESP)
+            {
+                ESPManager.DrawContainersTab();
+            }
+            if(isDrawPickablesESP)
+            {
+                ESPManager.DrawPickablesTab();
             }
         }
     }
